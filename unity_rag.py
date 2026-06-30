@@ -18,6 +18,7 @@ from tqdm import tqdm
 ZIP_PATH = "unity_docs.zip"
 EXTRACT_PATH = "docs"
 DB_PATH = "./unity_db"
+CONFIG_PATH = "config.txt"
 
 CHUNK_SIZE = 800       # caracteres por chunk
 CHUNK_OVERLAP = 150    # solapamiento entre chunks para no perder contexto
@@ -406,6 +407,132 @@ TEXTS = {
         "fr": "Erreur inattendue : {error}",
         "ru": "Погрешность нечаянная: {error}",
     },
+    "config_not_found": {
+        "es": "\nNo se encontró '{config_path}'. Vamos a configurar la aplicación.",
+        "en": "\n'{config_path}' was not found. Let's set up the application.",
+        "fr": "\n'{config_path}' est introuvable. Configurons l'application.",
+        "ru": "\n«{config_path}» не обретен. Уготовим ныне устроение приложения.",
+    },
+    "config_found": {
+        "es": "Configuración encontrada en '{config_path}'. Cargando ajustes guardados...",
+        "en": "Configuration found in '{config_path}'. Loading saved settings...",
+        "fr": "Configuration trouvée dans '{config_path}'. Chargement des paramètres enregistrés...",
+        "ru": "Устроение обретено во «{config_path}». Загружаются хранимые уставы...",
+    },
+    "config_loaded": {
+        "es": "Ajustes cargados -> idioma: {language}, puerto: {port}, modelo: {model}",
+        "en": "Settings loaded -> language: {language}, port: {port}, model: {model}",
+        "fr": "Paramètres chargés -> langue : {language}, port : {port}, modèle : {model}",
+        "ru": "Уставы загружены -> язык: {language}, врата: {port}, модель: {model}",
+    },
+    "config_saved": {
+        "es": "Configuración guardada en '{config_path}'. Puedes editar este archivo para cambiar los ajustes.",
+        "en": "Configuration saved to '{config_path}'. You can edit this file to change the settings.",
+        "fr": "Configuration enregistrée dans '{config_path}'. Vous pouvez modifier ce fichier pour changer les paramètres.",
+        "ru": "Устроение сохранено во «{config_path}». Можеши править сию хартию, дабы изменити уставы.",
+    },
+    "config_save_error": {
+        "es": "Aviso: no se pudo guardar la configuración en '{config_path}': {error}",
+        "en": "Warning: could not save configuration to '{config_path}': {error}",
+        "fr": "Avis : impossible d'enregistrer la configuration dans '{config_path}' : {error}",
+        "ru": "Весть: не удалося сохранити устроение во «{config_path}»: {error}",
+    },
+    "config_read_error": {
+        "es": "Aviso: no se pudo leer '{config_path}' ({error}). Se solicitará la configuración de nuevo.",
+        "en": "Warning: could not read '{config_path}' ({error}). Configuration will be requested again.",
+        "fr": "Avis : impossible de lire '{config_path}' ({error}). La configuration sera redemandée.",
+        "ru": "Весть: не удалося прочести «{config_path}» ({error}). Устроение испросится снова.",
+    },
+    "config_header": {
+        "es": (
+            "# ============================================================\n"
+            "# Archivo de configuración de Unity Docs AI\n"
+            "# ------------------------------------------------------------\n"
+            "# Este archivo se generó automáticamente con los valores que\n"
+            "# elegiste al iniciar la aplicación. Si quieres cambiar algún\n"
+            "# ajuste, edita el valor correspondiente y guarda el archivo.\n"
+            "# La próxima vez que ejecutes el script, no se te volverá a\n"
+            "# preguntar: se usarán directamente estos valores.\n"
+            "#\n"
+            "# language: idioma de la interfaz y de las respuestas.\n"
+            "#   Valores posibles: es | en | fr | ru\n"
+            "#   (es = español, en = inglés, fr = francés, ru = ruso arcaico)\n"
+            "#\n"
+            "# port: puerto donde escucha el servidor de Ollama.\n"
+            "#   Valor por defecto: 11434\n"
+            "#\n"
+            "# model: nombre exacto del modelo de Ollama a utilizar.\n"
+            "#   Ejemplos: llama3.2 | llama3.1 | qwen2.5 | mistral | glm4:latest\n"
+            "#   (también puede ser cualquier otro modelo instalado en Ollama)\n"
+            "# ============================================================\n"
+        ),
+        "en": (
+            "# ============================================================\n"
+            "# Unity Docs AI configuration file\n"
+            "# ------------------------------------------------------------\n"
+            "# This file was generated automatically with the values you\n"
+            "# chose when starting the application. If you want to change\n"
+            "# any setting, edit the corresponding value and save the file.\n"
+            "# The next time you run the script, you will not be asked\n"
+            "# again: these values will be used directly.\n"
+            "#\n"
+            "# language: interface and answer language.\n"
+            "#   Possible values: es | en | fr | ru\n"
+            "#   (es = Spanish, en = English, fr = French, ru = archaic Russian)\n"
+            "#\n"
+            "# port: port where the Ollama server listens.\n"
+            "#   Default value: 11434\n"
+            "#\n"
+            "# model: exact name of the Ollama model to use.\n"
+            "#   Examples: llama3.2 | llama3.1 | qwen2.5 | mistral | glm4:latest\n"
+            "#   (any other model installed in Ollama also works)\n"
+            "# ============================================================\n"
+        ),
+        "fr": (
+            "# ============================================================\n"
+            "# Fichier de configuration de Unity Docs AI\n"
+            "# ------------------------------------------------------------\n"
+            "# Ce fichier a été généré automatiquement avec les valeurs que\n"
+            "# vous avez choisies au démarrage de l'application. Si vous\n"
+            "# souhaitez modifier un réglage, éditez la valeur correspondante\n"
+            "# et enregistrez le fichier. La prochaine fois que vous\n"
+            "# exécuterez le script, ces valeurs seront utilisées directement.\n"
+            "#\n"
+            "# language : langue de l'interface et des réponses.\n"
+            "#   Valeurs possibles : es | en | fr | ru\n"
+            "#   (es = espagnol, en = anglais, fr = français, ru = russe archaïque)\n"
+            "#\n"
+            "# port : port sur lequel le serveur Ollama écoute.\n"
+            "#   Valeur par défaut : 11434\n"
+            "#\n"
+            "# model : nom exact du modèle Ollama à utiliser.\n"
+            "#   Exemples : llama3.2 | llama3.1 | qwen2.5 | mistral | glm4:latest\n"
+            "#   (tout autre modèle installé dans Ollama fonctionne aussi)\n"
+            "# ============================================================\n"
+        ),
+        "ru": (
+            "# ============================================================\n"
+            "# Хартия устроения Unity Docs AI\n"
+            "# ------------------------------------------------------------\n"
+            "# Сия хартия сотворена сама собою со уставами, кои ты избрал\n"
+            "# при первом тщании приложения. Аще восхощеши изменити некий\n"
+            "# устав, исправи подобающее значение и сохрани хартию. В\n"
+            "# следующий раз вопрошений не будет: употребятся прямо сии\n"
+            "# значения.\n"
+            "#\n"
+            "# language: язык лица (интерфейса) и ответов.\n"
+            "#   Возможные значения: es | en | fr | ru\n"
+            "#   (es = гишпанский, en = аглицкий, fr = франкский, ru = русский старинный)\n"
+            "#\n"
+            "# port: врата, на коих внимает служитель Ollama.\n"
+            "#   Значение по обычаю: 11434\n"
+            "#\n"
+            "# model: имя точное модели Ollama, юже подобает употребити.\n"
+            "#   Примеры: llama3.2 | llama3.1 | qwen2.5 | mistral | glm4:latest\n"
+            "#   (тако же годна всяка иная модель, водворенная во Ollama)\n"
+            "# ============================================================\n"
+        ),
+    },
 }
 
 
@@ -579,6 +706,109 @@ def select_model():
             pull_model(MODEL_NAME)
         else:
             print(t("model_continue_without_download"))
+
+# -------------------------------------------------
+# CONFIG.TXT (persistencia de ajustes)
+# -------------------------------------------------
+
+VALID_LANGUAGES = {"es", "en", "fr", "ru"}
+
+
+def config_exists() -> bool:
+    return os.path.isfile(CONFIG_PATH)
+
+
+def read_config() -> dict:
+    """Lee config.txt y devuelve un dict con las claves language/port/model.
+    Ignora líneas vacías y comentarios (las que empiezan por '#')."""
+    values = {}
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            values[key.strip().lower()] = value.strip()
+    return values
+
+
+def load_config() -> bool:
+    """Intenta cargar idioma, puerto y modelo desde config.txt.
+    Devuelve True si la configuración se cargó correctamente, False en
+    caso contrario (archivo ausente o corrupto)."""
+    global LANGUAGE, OLLAMA_PORT, OLLAMA_URL, MODEL_NAME
+
+    try:
+        values = read_config()
+
+        language = values.get("language", "es").strip().lower()
+        if language not in VALID_LANGUAGES:
+            language = "es"
+
+        try:
+            port = int(values.get("port", "11434"))
+        except ValueError:
+            port = 11434
+
+        model = values.get("model", "").strip() or "llama3.2"
+
+        LANGUAGE = language
+        OLLAMA_PORT = port
+        OLLAMA_URL = f"http://localhost:{OLLAMA_PORT}/api/generate"
+        MODEL_NAME = model
+
+        print(t("config_found", config_path=CONFIG_PATH))
+        print(t("config_loaded", language=LANGUAGE, port=OLLAMA_PORT, model=MODEL_NAME))
+
+        if not check_model_exists(MODEL_NAME):
+            download = input(t("model_not_installed", model=MODEL_NAME)).strip().lower()
+            if download in ("s", "y", "si", "sí", "yes", "д", "да"):
+                pull_model(MODEL_NAME)
+            else:
+                print(t("model_continue_without_download"))
+
+        return True
+    except Exception as e:
+        print(t("config_read_error", config_path=CONFIG_PATH, error=e))
+        return False
+
+
+def save_config():
+    """Guarda en config.txt la configuración actual (idioma/puerto/modelo)
+    precedida de una cabecera explicativa en el idioma seleccionado,
+    indicando los valores válidos para cada ajuste."""
+    try:
+        header = t("config_header")
+        with open(CONFIG_PATH, "w", encoding="utf-8") as f:
+            f.write(header)
+            f.write("\n")
+            f.write(f"language={LANGUAGE}\n")
+            f.write(f"port={OLLAMA_PORT}\n")
+            f.write(f"model={MODEL_NAME}\n")
+        print(t("config_saved", config_path=CONFIG_PATH))
+    except Exception as e:
+        print(t("config_save_error", config_path=CONFIG_PATH, error=e))
+
+
+def setup_config():
+    """Punto de entrada de configuración: si existe config.txt intenta
+    cargarlo; si no existe o está corrupto, pregunta todos los ajustes
+    al usuario (idioma, puerto, modelo) y los guarda en config.txt."""
+    if config_exists() and load_config():
+        return
+
+    if config_exists():
+        # El archivo existía pero no se pudo leer correctamente
+        pass
+    else:
+        print(t("config_not_found", config_path=CONFIG_PATH))
+
+    select_language()
+    select_port()
+    select_model()
+    save_config()
 
 # -------------------------------------------------
 # SYSTEM PROMPT
@@ -894,9 +1124,7 @@ if __name__ == "__main__":
     print(t("main_title"))
     print(t("main_title_bar"))
 
-    select_language()
-    select_port()
-    select_model()
+    setup_config()
 
     if not check_ollama_running():
         print(t("ollama_not_detected", port=OLLAMA_PORT))
